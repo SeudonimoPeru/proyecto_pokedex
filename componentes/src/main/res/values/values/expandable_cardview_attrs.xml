@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ExpandableCardView">
+        <attr name="expandablecardview_contentView" format="reference" />
+
+        <attr name="expandablecardview_enableExpandable" format="boolean" />
+        <attr name="expandablecardview_cornerRadius" format="dimension" />
+        <attr name="expandablecardview_elevation" format="dimension" />
+        <attr name="expandablecardview_cardBackgroundColor" format="color" />
+
+        <attr name="expandablecardview_title" format="string" />
+
+        <attr name="expandablecardview_icon" format="reference" />
+        <attr name="expandablecardview_image" format="reference" />
+
+        <attr name="expandablecardview_expandedAnimationDuration" format="integer" />
+        <attr name="expandablecardview_collapsedAnimationDuration" format="integer" />
+
+    </declare-styleable>
+
+    <string name="expanded" translation_description="The label used on a button when a view is in an expanded state.">Expandido</string>
+    <string name="collapsed" translation_description="The label used on a button when a view is in an collapsed state.">Colapsado</string>
+
+</resources>

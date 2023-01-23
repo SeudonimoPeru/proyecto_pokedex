@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">components</string>
+
+    <string name="opcion_planta">Planta</string>
+    <string name="opcion_cda">CDA</string>
+    <string name="opcion_operador">O. Logístico</string>
+
+
+    <string name="button_aceptar">Aceptar</string>
+    <string name="button_cancelar">Cancelar</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/sap"
+        android:title="Enviar a SAP" />
+
+    <item
+        android:id="@+id/regresar"
+        android:title="Regresar a Inventarios" />
+
+    <item
+        android:id="@+id/inventario"
+        android:title="Resumen de Inventario" />
+
+    <item
+        android:id="@+id/cambiar"
+        android:title="Cambiar Usuario / Zona" />
+
+</menu>

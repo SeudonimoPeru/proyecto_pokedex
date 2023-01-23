@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Loading">
+        <attr name="loading_text" format="string" />
+        <attr name="loading_bg_color" format="color" />
+    </declare-styleable>
+
+</resources>

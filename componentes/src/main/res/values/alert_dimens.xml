@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="alert_buton_space">16dp</dimen>
+    <dimen name="alert_buttonTextSize">18sp</dimen>
+    <dimen name="alert_buttonsHeight">58dp</dimen>
+    <dimen name="alert_buttonsCornerRadius">8dp</dimen>
+</resources>

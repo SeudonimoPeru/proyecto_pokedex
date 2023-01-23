@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LinkCardView">
+        <attr name="linkcardview_cornerRadius" format="dimension" />
+        <attr name="linkcardview_elevation" format="dimension" />
+        <attr name="linkcardview_cardBackgroundColor" format="color" />
+
+        <attr name="linkcardview_title" format="string" />
+
+        <attr name="linkcardview_icon" format="reference" />
+        <attr name="linkcardview_image" format="reference" />
+
+    </declare-styleable>
+
+</resources>

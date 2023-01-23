@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	tools:context=".main.PrincipalFragment">
+
+
+	<data>
+
+		<import type="android.text.TextUtils" />
+
+		<import type="android.view.View" />
+
+		<variable
+			name="loginviewModel"
+			type="com.jhon.pokedex.main.PrincipalViewModel" />
+
+	</data>
+
+	<RelativeLayout
+
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/white">
+
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"
+			android:padding="20dp">
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/textInputLayoutUsuario"
+				style="@style/Vts.Widget.TextInputLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:hintEnabled="false"
+				app:startIconDrawable="@drawable/ic_search"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:boxCornerRadiusBottomEnd="12dp"
+				app:boxCornerRadiusTopStart="12dp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:hint="Buscar un pokemon"
+					android:inputType="text"
+					android:text="" />
+			</com.google.android.material.textfield.TextInputLayout>
+
+		</LinearLayout>
+	</RelativeLayout>
+</layout>
