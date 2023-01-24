@@ -16,12 +16,16 @@ class PokeApiRepositoryImpl(
     private val pokeLocalDs: AllPokemonDataSource,
     private val pokemonMapper: PokemonMapper,
 
-    ): PokeApiRepository {
+    ) : PokeApiRepository {
 
     override suspend fun getAllPokemonWithLimit(offset: Int, limit: Int): Either<Failure, List<PokemonModel>> {
         return if (connection.isNetworkAvailable()) {
             when (val response = pokeRemoteDs.listaInventarioWithLimit(offset, limit)) {
-                is Either.Success -> Either.Success(pokemonMapper.mapListPokemonResponseToModel(response.success))
+
+                is Either.Success -> {
+
+                    Either.Success(pokemonMapper.mapListPokemonResponseToModel(response.success))
+                }
                 is Either.Error -> Either.Error(response.error)
                 else -> Either.Error(Failure.None)
             }
@@ -36,4 +40,17 @@ class PokeApiRepositoryImpl(
         }
 
     }
+
+    override suspend fun insertAllPokemon(listPokemon: List<PokemonModel>): Either<Failure, Unit> {
+        return when (val response = pokeLocalDs.insertAllPokemon(pokemonMapper.mapAllPokemonModelToEntitty(listPokemon))) {
+
+            is Either.Success -> {
+
+                Either.Success(response.success)
+            }
+            is Either.Error -> Either.Error(response.error)
+            else -> Either.Error(Failure.None)
+        }
+    }
+
 }

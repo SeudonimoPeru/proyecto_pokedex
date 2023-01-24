@@ -12,14 +12,14 @@ import java.net.SocketTimeoutException
 import javax.net.ssl.SSLException
 import javax.net.ssl.SSLHandshakeException
 
-abstract class CallServiceBase() {
+abstract class CallServiceBase {
 
     abstract fun getNetworkUtils(): ConnectionUtils
 
     /**
      * Use this for unit(void) responses returns.
      */
-    protected suspend inline fun <T> callServiceWithOutBase(crossinline retrofitCall: suspend () -> Response<T>): com.jhon.domain.utils.Either<com.jhon.domain.utils.Failure, T> {
+    protected suspend inline fun <T> callServiceWithOutBase(crossinline retrofitCall: suspend () -> Response<T>): Either<Failure, T> {
         return when (getNetworkUtils().isNetworkAvailable()) {
             true -> {
                 try {

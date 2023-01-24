@@ -22,16 +22,16 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            keyAlias = ConfigGradle.BuildTypes.Debug.keyAlias
-            keyPassword = ConfigGradle.BuildTypes.Debug.password
-            storeFile = file(ConfigGradle.BuildTypes.Debug.firmaFile)
-            storePassword = ConfigGradle.BuildTypes.Debug.password
+//            keyAlias = ConfigGradle.BuildTypes.Debug.keyAlias
+//            keyPassword = ConfigGradle.BuildTypes.Debug.password
+//            storeFile = file(ConfigGradle.BuildTypes.Debug.firmaFile)
+//            storePassword = ConfigGradle.BuildTypes.Debug.password
         }
         create("release") {
-            keyAlias = ConfigGradle.BuildTypes.Release.keyAlias
-            keyPassword = ConfigGradle.BuildTypes.Release.password
-            storeFile = file(ConfigGradle.BuildTypes.Release.firmaFile)
-            storePassword = ConfigGradle.BuildTypes.Release.password
+//            keyAlias = ConfigGradle.BuildTypes.Release.keyAlias
+//            keyPassword = ConfigGradle.BuildTypes.Release.password
+//            storeFile = file(ConfigGradle.BuildTypes.Release.firmaFile)
+//            storePassword = ConfigGradle.BuildTypes.Release.password
         }
     }
 

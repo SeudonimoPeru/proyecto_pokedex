@@ -18,4 +18,6 @@ class PrincipalUseCase(private val repository: PokeApiRepository) :
     override suspend fun run(params: Params): Either<Failure, List<PokemonModel>> {
         return repository.getAllPokemonWithLimit(params.offset, params.limit)
     }
+
+
 }

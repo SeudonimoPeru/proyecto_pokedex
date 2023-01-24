@@ -2,7 +2,9 @@ package com.jhon.data.mapper
 
 import com.jhon.data.source.local.room.db.entity.PokemonEntity
 import com.jhon.data.source.remote.ds.pokeapi.ListPokemonResponse
+import com.jhon.data.utils.ConstantsDB
 import com.jhon.domain.model.PokemonModel
+import java.util.*
 
 class PokemonMapperImpl : PokemonMapper {
     override suspend fun mapPokemonModelToEntitty(pokemonModel: PokemonModel): PokemonEntity {
@@ -14,6 +16,7 @@ class PokemonMapperImpl : PokemonMapper {
 
     override suspend fun mapPokemonEntityToModel(pokemonEntity: PokemonEntity): PokemonModel {
         return PokemonModel(
+           "",
             pokemonEntity.name!!,
             pokemonEntity.id!!
         )
@@ -29,22 +32,16 @@ class PokemonMapperImpl : PokemonMapper {
 
     override suspend fun mapAllPokemonEntityToModel(listpokemonEntity: List<PokemonEntity>): List<PokemonModel> {
         return listpokemonEntity.map {
-            PokemonModel(it.name!!, it.id!!)
+            PokemonModel(ConstantsDB.ORIGIN_OF_LOCAL,it.name!!, it.id!!)
         }
     }
 
     override suspend fun mapListPokemonResponseToModel(pokemonResponse: ListPokemonResponse): List<PokemonModel> {
-        return pokemonResponse.pokemonRespons.map {
-            PokemonModel(it.name, cleanUrlPokemon(it.url))
+        return pokemonResponse.results.map {
+            PokemonModel(ConstantsDB.ORIGIN_OF_REMOTE,it.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }, it.url)
         }
     }
 
-
-    fun cleanUrlPokemon(url: String): Int {
-        url.replace("https://pokeapi.co/api/v2/pokemon/", "")
-        url.replace("/", "")
-        return url.toInt()
-    }
 }
 
 

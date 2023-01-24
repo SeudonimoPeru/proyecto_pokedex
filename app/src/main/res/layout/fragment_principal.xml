@@ -13,7 +13,7 @@
 		<import type="android.view.View" />
 
 		<variable
-			name="loginviewModel"
+			name="principalviewModel"
 			type="com.jhon.pokedex.main.PrincipalViewModel" />
 
 	</data>
@@ -30,7 +30,8 @@
 			android:layout_height="match_parent"
 			android:layout_centerHorizontal="true"
 			android:layout_centerVertical="true"
-			android:padding="20dp">
+			android:padding="20dp"
+			android:orientation="vertical">
 			<com.google.android.material.textfield.TextInputLayout
 				android:id="@+id/textInputLayoutUsuario"
 				style="@style/Vts.Widget.TextInputLayout"
@@ -51,6 +52,19 @@
 					android:inputType="text"
 					android:text="" />
 			</com.google.android.material.textfield.TextInputLayout>
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/recyclerViewPokemon"
+				setListData="@{principalviewModel.listAllPoken}"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="40dp"
+				android:nestedScrollingEnabled="true"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				tools:itemCount="6"
+				tools:listitem="@layout/item_pokemon" />
 
 		</LinearLayout>
 	</RelativeLayout>

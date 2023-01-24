@@ -11,7 +11,7 @@ object ConfigGradle {
     object BuildTypes{
         object Debug{
             const val keyAlias = "Pokedex"
-            const val password = "Pokedex821."
+            const val password = "fff"
             const val firmaFile= "debug.jks"
             const val firmaPassword = "Pokedex"
         }

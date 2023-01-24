@@ -7,4 +7,5 @@ import com.jhon.domain.utils.Failure
 interface PokeApiRepository {
 
     suspend fun getAllPokemonWithLimit(offset: Int , limit : Int): Either<Failure, List<PokemonModel>>
+    suspend fun insertAllPokemon(listPokemon: List<PokemonModel>): Either<Failure, Unit>
 }

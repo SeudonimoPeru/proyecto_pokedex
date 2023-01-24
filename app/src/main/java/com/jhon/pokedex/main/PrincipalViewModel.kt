@@ -1,5 +1,6 @@
 package com.jhon.pokedex.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -13,30 +14,31 @@ class PrincipalViewModel(
     private val principalUseCase: PrincipalUseCase
 ) : BaseViewModel() {
 
-    private var _txtSearch = MutableLiveData ("")
-     val txtSearch : LiveData<String> get() = _txtSearch
+    private var _txtSearch = MutableLiveData("")
+    val txtSearch: LiveData<String> get() = _txtSearch
 
     private var _listAllPoken = MutableLiveData<List<PokemonModel>>()
-    val listAllPoken : LiveData<List<PokemonModel>> get() = _listAllPoken
+    val listAllPoken: LiveData<List<PokemonModel>>  = _listAllPoken
 
-    fun executeLogin() {
-
-        val params = PrincipalUseCase.Params(0,150)
+    fun getData() {
+        showLoading(true)
+        val params = PrincipalUseCase.Params(0, 150)
         viewModelScope.launch {
-            principalUseCase.invoke(viewModelScope,params){
-                   it.either(::failer,::handleGetListPokemon)
+            principalUseCase.invoke(viewModelScope, params) {
+                showLoading(false)
+                it.either(::failer, ::handleGetListPokemon)
 
             }
         }
     }
 
 
-    fun failer(failure: Failure){
-
+    fun failer(failure: Failure) {
+        Log.i("TAGGGG", "failer: ${failure.toString()}")
     }
 
-    fun handleGetListPokemon(listPokemon :List<PokemonModel>){
-
+    fun handleGetListPokemon(listPokemon: List<PokemonModel>) {
+        _listAllPoken.value = listPokemon
     }
 
 
