@@ -24,15 +24,15 @@ class PokemonMapperImpl : PokemonMapper {
 
     override suspend fun mapAllPokemonModelToEntitty(listpokemonModel: List<PokemonModel>): List<PokemonEntity> {
         return listpokemonModel.map {
-            PokemonEntity(it.name, it.id)
+            PokemonEntity(it.name.lowercase(), it.id)
         }
 
     }
 
 
     override suspend fun mapAllPokemonEntityToModel(listpokemonEntity: List<PokemonEntity>): List<PokemonModel> {
-        return listpokemonEntity.map {
-            PokemonModel(ConstantsDB.ORIGIN_OF_LOCAL,it.name!!, it.id!!)
+        return listpokemonEntity.map { it ->
+            PokemonModel(ConstantsDB.ORIGIN_OF_LOCAL,it.name!!.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }.uppercase(), it.id!!)
         }
     }
 

@@ -92,6 +92,7 @@ dependencies {
     implementation(Dependencias.Libraries.koinjavacompatibility)
     implementation(Dependencias.Libraries.koinWordManager)
     implementation(Dependencias.Libraries.gson)
+    implementation(Dependencias.Libraries.glide)
 
     //test
     implementation(Dependencias.TestLibraries.jUnit)

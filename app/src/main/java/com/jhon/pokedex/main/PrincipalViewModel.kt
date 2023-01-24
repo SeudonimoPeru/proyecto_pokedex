@@ -22,7 +22,8 @@ class PrincipalViewModel(
     val txtSearch: LiveData<String> get() = _txtSearch
 
     private var _listAllPoken = MutableLiveData<List<PokemonModel>>()
-    val listAllPoken: LiveData<List<PokemonModel>> = _listAllPoken
+    private var _listAllPokenForFilter = MutableLiveData<List<PokemonModel>>()
+    val listAllPoken: LiveData<List<PokemonModel>> = _listAllPokenForFilter
 
     fun getData() {
         showLoading(true)
@@ -43,12 +44,26 @@ class PrincipalViewModel(
 
     fun handleGetListPokemon(listPokemon: List<PokemonModel>) {
         _listAllPoken.value = listPokemon
+        _listAllPokenForFilter.value = listPokemon
         val listPokemonParam = GuardarPokemonesUseCases.Params(listPokemon)
         viewModelScope.launch(Dispatchers.IO) {
             guardarPokemonesUseCases.invoke(viewModelScope, listPokemonParam) {
                 it.either(::failer) {
                     Log.i(TAG, "handleGetListPokemon: Guardado con éxito")
                 }
+            }
+        }
+    }
+
+    fun filterPokemon(query: String) {
+        _listAllPokenForFilter.value = _listAllPoken.value
+        viewModelScope.launch(Dispatchers.IO) {
+            _listAllPokenForFilter.value?.let { list ->
+                _listAllPokenForFilter.postValue(
+                    list.filter {
+                        it.name.contains(query, true)
+                    }
+                )
             }
         }
     }
