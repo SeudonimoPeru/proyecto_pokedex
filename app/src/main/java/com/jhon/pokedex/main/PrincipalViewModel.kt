@@ -1,24 +1,28 @@
 package com.jhon.pokedex.main
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jhon.domain.model.PokemonModel
+import com.jhon.domain.usecases.GuardarPokemonesUseCases
 import com.jhon.domain.usecases.PrincipalUseCase
 import com.jhon.domain.utils.Failure
 import com.jhon.pokedex.base.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PrincipalViewModel(
-    private val principalUseCase: PrincipalUseCase
+    private val principalUseCase: PrincipalUseCase,
+    private val guardarPokemonesUseCases: GuardarPokemonesUseCases
 ) : BaseViewModel() {
 
     private var _txtSearch = MutableLiveData("")
     val txtSearch: LiveData<String> get() = _txtSearch
 
     private var _listAllPoken = MutableLiveData<List<PokemonModel>>()
-    val listAllPoken: LiveData<List<PokemonModel>>  = _listAllPoken
+    val listAllPoken: LiveData<List<PokemonModel>> = _listAllPoken
 
     fun getData() {
         showLoading(true)
@@ -39,6 +43,14 @@ class PrincipalViewModel(
 
     fun handleGetListPokemon(listPokemon: List<PokemonModel>) {
         _listAllPoken.value = listPokemon
+        val listPokemonParam = GuardarPokemonesUseCases.Params(listPokemon)
+        viewModelScope.launch(Dispatchers.IO) {
+            guardarPokemonesUseCases.invoke(viewModelScope, listPokemonParam) {
+                it.either(::failer) {
+                    Log.i(TAG, "handleGetListPokemon: Guardado con éxito")
+                }
+            }
+        }
     }
 
 

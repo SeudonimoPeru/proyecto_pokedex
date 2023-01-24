@@ -11,11 +11,10 @@ interface PokemonDao : BaseDao<PokemonEntity> {
     @Query("SELECT * from pokemon_table")
     fun getAllPokemon(): List<PokemonEntity>
 
-    @Query("DELETE from pokemon_table ")
-    fun deleteAll()
-
-
     @Query("SELECT * from pokemon_table WHERE name = :idPokemon ")
     fun getPokemonWithId(idPokemon: Int): PokemonEntity?
+
+    @Query("DELETE FROM pokemon_table")
+    fun deleteAll()
 
 }

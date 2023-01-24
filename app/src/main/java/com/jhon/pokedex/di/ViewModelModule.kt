@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
 
-    viewModel { PrincipalViewModel(get()) }
+    viewModel { PrincipalViewModel(get(),get()) }
 
 
 }

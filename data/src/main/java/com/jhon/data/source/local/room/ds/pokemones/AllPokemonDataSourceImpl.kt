@@ -20,7 +20,15 @@ class AllPokemonDataSourceImpl(
     override suspend fun insertAllPokemon(listPokemonEntity: List<PokemonEntity>): Either<Failure, Unit> {
         return try {
             Either.Success(pokemonDao.insertAll(listPokemonEntity))
-        }catch (exception: SQLiteException){
+        } catch (exception: SQLiteException) {
+            Either.Error(Failure.None)
+        }
+    }
+
+    override suspend fun deleteTablePokemon(): Either<Failure, Unit> {
+        return try {
+            Either.Success(pokemonDao.deleteAll())
+        } catch (exception: SQLiteException) {
             Either.Error(Failure.None)
         }
     }

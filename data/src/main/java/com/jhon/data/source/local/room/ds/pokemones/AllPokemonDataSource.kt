@@ -8,6 +8,6 @@ interface AllPokemonDataSource {
 
     suspend fun getAllPokemon(): Either<Failure, List<PokemonEntity>>
     suspend fun insertAllPokemon(listPokemonEntity: List<PokemonEntity>): Either<Failure, Unit>
-
+    suspend fun deleteTablePokemon(): Either<Failure, Unit>
     suspend fun getPokemonWithId(idPokemon: Int): Either<Failure, PokemonEntity?>
 }
