@@ -14,11 +14,11 @@ class PokeApiDataSourceImpl(
 
     override fun getNetworkUtils() = connectionUtils
 
-    override suspend fun listaInventarioWithLimit(offset: Int, limit: Int): Either<Failure, ListPokemonResponse> = callServiceWithOutBase {
+    override suspend fun getDetalleOfPokemon(offset: Int, limit: Int): Either<Failure, ListPokemonResponse> = callServiceWithOutBase {
         pokeApiService.getPokemonWithLimit(offset, limit)
     }
 
-    override suspend fun listaInventarioWithLimit(uriDetalle: String): Either<Failure, PokemonDetalleResponse> = callServiceWithOutBase {
+    override suspend fun getDetalleOfPokemon(uriDetalle: String): Either<Failure, PokemonDetalleResponse> = callServiceWithOutBase {
         pokeApiService.getDetallePokemon(uriDetalle)
     }
 

@@ -6,6 +6,6 @@ import com.jhon.domain.utils.Failure
 
 interface PokeApiDataSource {
 
-    suspend fun listaInventarioWithLimit(offset: Int, limit: Int): Either<Failure, ListPokemonResponse>
-    suspend fun listaInventarioWithLimit(uriDetalle: String): Either<Failure, PokemonDetalleResponse>
+    suspend fun getDetalleOfPokemon(offset: Int, limit: Int): Either<Failure, ListPokemonResponse>
+    suspend fun getDetalleOfPokemon(uriDetalle: String): Either<Failure, PokemonDetalleResponse>
 }

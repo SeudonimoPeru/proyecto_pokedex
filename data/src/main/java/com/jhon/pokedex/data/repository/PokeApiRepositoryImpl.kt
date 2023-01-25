@@ -21,12 +21,21 @@ class PokeApiRepositoryImpl(
 
 
     override suspend fun getDetallePokemon(uriDetalle: String): Either<Failure, PokemonDetalleModel> {
-        TODO("Not yet implemented")
+        return when (val response = pokeRemoteDs.getDetalleOfPokemon(uriDetalle)) {
+
+            is Either.Success -> {
+
+                Either.Success(pokemonMapper.mapPokeMonDetalleResponseToModel(response.success))
+            }
+            is Either.Error -> Either.Error(response.error)
+            else -> Either.Error(Failure.None)
+        }
     }
+
 
     override suspend fun getAllPokemonWithLimit(offset: Int, limit: Int): Either<Failure, List<PokemonModel>> {
         return if (connection.isNetworkAvailable()) {
-            when (val response = pokeRemoteDs.listaInventarioWithLimit(offset, limit)) {
+            when (val response = pokeRemoteDs.getDetalleOfPokemon(offset, limit)) {
 
                 is Either.Success -> {
 

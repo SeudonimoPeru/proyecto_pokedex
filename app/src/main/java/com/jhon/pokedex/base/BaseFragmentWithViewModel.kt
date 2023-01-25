@@ -9,6 +9,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.jhon.pokedex.R
+import com.jhon.pokedex.componentes.alerts.GeneralAlertDialog
 import org.koin.android.compat.ViewModelCompat.viewModel
 import kotlin.reflect.KClass
 
@@ -108,7 +110,9 @@ abstract class BaseFragmentWithViewModel<ViewDataBindingClass : ViewDataBinding,
      * override this for set up Listeners
      */
     open fun onSetupListeners() {
-
+        myViewModel.showErrorDialog = {
+            showErrorDialog()
+        }
     }
 
     /**
@@ -128,5 +132,12 @@ abstract class BaseFragmentWithViewModel<ViewDataBindingClass : ViewDataBinding,
 
     protected fun goBackTo(destination: Int, inclusive: Boolean) {
         findNavController().popBackStack(destination, inclusive)
+    }
+
+    private fun showErrorDialog() {
+        GeneralAlertDialog(
+            title = getString(R.string.title_error),
+            message = getString(R.string.message_error),
+        ).show(childFragmentManager, "GeneralAlertDialog")
     }
 }

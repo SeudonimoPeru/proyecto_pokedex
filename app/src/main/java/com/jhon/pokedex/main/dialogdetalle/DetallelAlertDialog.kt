@@ -11,23 +11,21 @@ import androidx.fragment.app.DialogFragment
 import com.jhon.componentes.R
 
 import com.jhon.componentes.databinding.AlertDialogBinding
+import com.jhon.domain.model.PokemonDetalleModel
+import com.jhon.pokedex.databinding.DialogPokemonDetalleBinding
 
 class DetallelAlertDialog(
-    @DrawableRes private val icon: Int = R.drawable.ic_error,
-    private val title: String,
-    private val message: String,
-    private val onClickConfirm: () -> Unit
-
+    private val pokemonDetalleModel: PokemonDetalleModel,
 ) : DialogFragment() {
 
-    private lateinit var binding: AlertDialogBinding
+    private lateinit var binding: DialogPokemonDetalleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = false
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = AlertDialogBinding.inflate(inflater, container, false)
+        binding = DialogPokemonDetalleBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,12 +33,7 @@ class DetallelAlertDialog(
         super.onViewCreated(view, savedInstanceState)
 
         binding.btn.setOnClickListener {
-            onClickConfirm.let {
-                onClickConfirm.invoke()
-                dialog?.dismiss()
-            } ?: run {
-                dialog?.dismiss()
-            }
+            dialog?.dismiss()
 
         }
         setupDialogValues()
@@ -50,9 +43,10 @@ class DetallelAlertDialog(
 
     private fun setupDialogValues() {
         with(binding) {
-            tvTitle.text = title
-            tvContent.text = message
-            ivIcon.setImageResource(icon)
+            tvnamePokemon.text = pokemonDetalleModel.name
+            tvability.text = pokemonDetalleModel.firstPower
+            tvtype.text = pokemonDetalleModel.type
+
         }
     }
 

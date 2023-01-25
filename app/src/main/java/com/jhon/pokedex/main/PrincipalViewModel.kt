@@ -5,8 +5,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.jhon.domain.model.PokemonDetalleModel
 import com.jhon.domain.model.PokemonModel
-import com.jhon.domain.usecases.GuardarPokemonesUseCases
+import com.jhon.domain.usecases.GetDetallePokemonUseCase
+import com.jhon.domain.usecases.SavePokemonesUseCases
 import com.jhon.domain.usecases.PrincipalUseCase
 import com.jhon.domain.utils.Failure
 import com.jhon.pokedex.base.BaseViewModel
@@ -18,9 +20,12 @@ import kotlinx.coroutines.withContext
 
 class PrincipalViewModel(
     private val principalUseCase: PrincipalUseCase,
-    private val guardarPokemonesUseCases: GuardarPokemonesUseCases,
-    private val pokemonMapperUI: PokemonMapperUI
+    private val savePokemonesUseCases: SavePokemonesUseCases,
+    private val pokemonMapperUI: PokemonMapperUI,
+    private val getDetallePokemonUseCase: GetDetallePokemonUseCase
 ) : BaseViewModel() {
+
+    lateinit var showDialogDetalle: (pokemonDetalleModel: PokemonDetalleModel) -> Unit
 
     private var _txtSearch = MutableLiveData("")
     val txtSearch: LiveData<String> get() = _txtSearch
@@ -42,7 +47,6 @@ class PrincipalViewModel(
     }
 
 
-
     fun handleGetListPokemon(listPokemon: List<PokemonModel>) {
 
 
@@ -52,8 +56,8 @@ class PrincipalViewModel(
             }
             _listAllPoken.value = listUI
             _listAllPokenForFilter.value = listUI
-            val listPokemonParam = GuardarPokemonesUseCases.Params(listPokemon)
-            guardarPokemonesUseCases.invoke(viewModelScope, listPokemonParam) {
+            val listPokemonParam = SavePokemonesUseCases.Params(listPokemon)
+            savePokemonesUseCases.invoke(viewModelScope, listPokemonParam) {
                 it.either(::failer) {
                     Log.i(TAG, "handleGetListPokemon: Guardado con éxito")
                 }
@@ -75,6 +79,25 @@ class PrincipalViewModel(
                 )
             }
         }
+    }
+
+    fun getDetalleOfPokemon(url: String) {
+        showLoading(true)
+        val params = GetDetallePokemonUseCase.Params(url)
+        viewModelScope.launch {
+            getDetallePokemonUseCase.invoke(viewModelScope, params) {
+                showLoading(false)
+                showLoading(false)
+                it.either(::failer, ::handleGetDetallePokemon)
+
+            }
+        }
+    }
+
+    private fun handleGetDetallePokemon(pokemonDetalleModel: PokemonDetalleModel) {
+        Log.d(TAG, "handleGetDetallePokemon: $pokemonDetalleModel")
+        showDialogDetalle.invoke(pokemonDetalleModel)
+
     }
 
 

@@ -1,9 +1,11 @@
 package com.jhon.pokedex.data.mapper
 
+import com.jhon.domain.model.PokemonDetalleModel
 import com.jhon.pokedex.data.source.local.room.db.entity.PokemonEntity
 import com.jhon.pokedex.data.source.remote.ds.pokeapi.ListPokemonResponse
 
 import com.jhon.domain.model.PokemonModel
+import com.jhon.pokedex.data.source.remote.ds.pokeapi.responsedetalle.PokemonDetalleResponse
 
 interface PokemonMapper {
 
@@ -16,6 +18,7 @@ interface PokemonMapper {
 
 
     suspend fun mapListPokemonResponseToModel(pokemonResponse: ListPokemonResponse): List<PokemonModel>
+    suspend fun mapPokeMonDetalleResponseToModel(pokemonDetalleResponse: PokemonDetalleResponse): PokemonDetalleModel
 
 
 

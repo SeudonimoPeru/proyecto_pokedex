@@ -16,9 +16,8 @@ class GeneralAlertDialog(
     @DrawableRes private val icon: Int = R.drawable.ic_error,
     private val title: String,
     private val message: String,
-    private val onClickConfirm: () -> Unit
 
-) : DialogFragment() {
+    ) : DialogFragment() {
 
     private lateinit var binding: AlertDialogBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +34,8 @@ class GeneralAlertDialog(
         super.onViewCreated(view, savedInstanceState)
 
         binding.btn.setOnClickListener {
-            onClickConfirm.let {
-                onClickConfirm.invoke()
-                dialog?.dismiss()
-            } ?: run {
-                dialog?.dismiss()
-            }
+
+            dialog?.dismiss()
 
         }
         setupDialogValues()
