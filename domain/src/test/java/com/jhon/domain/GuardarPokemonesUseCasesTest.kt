@@ -25,13 +25,24 @@ class GuardarPokemonesUseCasesTest {
     }
 
     @Test
-    fun `When the list in the index 0 is diferent to remote`() = runBlocking {
+    fun `When the list in the index 0 is equals to remote`() = runBlocking {
         val context = this
         list.add(PokemonModel("remote", "", ""))
 
         guardarPokemonesUseCases(params = GuardarPokemonesUseCases.Params(list), scope = context)
 
         coVerify(exactly = 1) { pokeApiRepository.deleteTablePokemon() }
+        coVerify(exactly = 1) { pokeApiRepository.insertAllPokemon(list) }
+    }
+
+    @Test
+    fun `When the list in the index 0 is diferent to remote`() = runBlocking {
+        val context = this
+        list.add(PokemonModel("local", "", ""))
+
+        guardarPokemonesUseCases(params = GuardarPokemonesUseCases.Params(list), scope = context)
+
+        coVerify(exactly = 0) { pokeApiRepository.deleteTablePokemon() }
         coVerify(exactly = 1) { pokeApiRepository.insertAllPokemon(list) }
     }
 }

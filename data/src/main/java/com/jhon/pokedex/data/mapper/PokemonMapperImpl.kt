@@ -18,7 +18,7 @@ class PokemonMapperImpl : PokemonMapper {
         return PokemonModel(
             "",
             pokemonEntity.name!!,
-            pokemonEntity.id!!
+            pokemonEntity.id
         )
     }
 
@@ -32,7 +32,7 @@ class PokemonMapperImpl : PokemonMapper {
 
     override suspend fun mapAllPokemonEntityToModel(listpokemonEntity: List<PokemonEntity>): List<PokemonModel> {
         return listpokemonEntity.map { it ->
-            PokemonModel(ConstantsDB.ORIGIN_OF_LOCAL, it.name!!.uppercaseFirstLetter(), it.id!!)
+            PokemonModel(ConstantsDB.ORIGIN_OF_LOCAL, it.name!!.uppercaseFirstLetter(), it.id)
         }
     }
 

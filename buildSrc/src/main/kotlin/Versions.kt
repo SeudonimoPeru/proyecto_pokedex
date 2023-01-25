@@ -7,7 +7,7 @@ object Versions {
     const val koin = "3.2.2"
     const val compileSdk = 32
     const val buildToolsVersion = "30.0.2"
-    const val minSdk = 25
+    const val minSdk = 26
     const val targetSdk = 32
     const val appCompat = "1.4.2"
     const val coreKtx = "1.8.0"
