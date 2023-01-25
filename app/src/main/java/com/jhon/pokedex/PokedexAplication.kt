@@ -2,8 +2,9 @@ package com.jhon.pokedex
 
 import android.app.Application
 import android.content.Context
-import com.jhon.data.di.*
+import com.jhon.pokedex.data.di.*
 import com.jhon.domain.di.useCasesModule
+import com.jhon.pokedex.di.mapperModule
 import com.jhon.pokedex.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -38,7 +39,8 @@ class PokedexAplication : Application() {
                     repositoryModule,
                     useCasesModule,
                     dataSourceModule,
-                    mapperDataModule
+                    mapperDataModule,
+                    mapperModule
 
 
                 )

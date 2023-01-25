@@ -1,4 +1,4 @@
-package com.jhon.pokedex.data
+package com.jhon.pokedex.data.
 
 import org.junit.Test
 

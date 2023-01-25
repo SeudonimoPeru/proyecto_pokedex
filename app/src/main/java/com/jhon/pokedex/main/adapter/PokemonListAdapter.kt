@@ -2,16 +2,16 @@ package com.jhon.pokedex.main.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jhon.domain.model.PokemonModel
 import com.jhon.pokedex.R
 import com.jhon.pokedex.databinding.ItemPokemonBinding
 import com.jhon.pokedex.extensions.basicDiffUtil
 import com.jhon.pokedex.extensions.bindingInflate
+import com.jhon.pokedex.model.PokemonUI
 
-class PokemonListAdapter(private val listener: (PokemonModel) -> Unit) :
+class PokemonListAdapter(private val listener: (PokemonUI) -> Unit) :
     RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 
-    var list: List<PokemonModel> by basicDiffUtil(
+    var list: List<PokemonUI> by basicDiffUtil(
         emptyList(), { old, new -> old.name == new.name }
     )
 

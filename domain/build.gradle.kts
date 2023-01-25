@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize")
+
 }
 
 android {
@@ -32,9 +32,14 @@ android {
 
 dependencies {
 
-    implementation (fileTree("libs") {include(listOf("*.jar"))})
-    implementation (Dependencias.KotlinLibraries.coroutinesAndroid)
-    implementation (Dependencias.KotlinLibraries.coroutinesCore)
+    implementation(fileTree("libs") { include(listOf("*.jar")) })
+    implementation(Dependencias.KotlinLibraries.coroutinesAndroid)
+    implementation(Dependencias.KotlinLibraries.coroutinesCore)
     implementation(Dependencias.Libraries.koinMain)
+
+    implementation(Dependencias.TestLibraries.jUnit)
+    implementation(Dependencias.TestLibraries.androidJUnit)
+    implementation(Dependencias.TestLibraries.espresso)
+    implementation(Dependencias.TestLibraries.mockito)
 
 }

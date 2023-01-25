@@ -18,11 +18,12 @@ buildscript {
     dependencies {
         classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
-        classpath ("com.android.tools.build:gradle:${Versions.gradle}")
+        classpath ("com.android.tools.build:gradle:7.3.1")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.8.1")
+        classpath("io.mockk:mockk:1.12.2")
 
     }
 }

@@ -71,7 +71,7 @@ object Dependencias {
         const val jUnit = "junit:junit:4.13.2"
         const val androidJUnit = "androidx.test.ext:junit:1.1.3"
         const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
-        const val mockito = "com.nhaarman:mockito-kotlin:1.5.0"
+        const val mockito = "io.mockk:mockk:1.12.2"
         const val androidXcore = "androidx.arch.core:core-testing:2.1.0"
         const val jsonForJVM = "org.json:json:20140107"
     }

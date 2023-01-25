@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.jhon.pokedex.componentes.blur.BlurBox
-import com.jhon.pokedex.componentes.loading.Loading
 import com.jhon.pokedex.componentes.blur.BlurEngine
+import com.jhon.pokedex.componentes.loading.Loading
 import com.jhon.pokedex.databinding.ActivitySplashBinding
 import com.jhon.pokedex.main.PrincipalActivity
 import com.jhon.pokedex.utils.Constans
